@@ -31,10 +31,13 @@ const calculateTotals =
           total: cart.items.reduce(
             (previous, itemName) => {
               return previous + listings
-                .filter(listing => listing.name === itemName)
+                .filter((listing) => {
+                  let checkFunc = listedPrice(listing)
+                  return checkFunc(itemName)
+                })
                 .reduce(
                   (previous, current) => {
-                    return previous + current.price
+                    return current.price
                   },
                 0)
             },
