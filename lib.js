@@ -25,7 +25,22 @@ const listedPrice =
 const calculateTotals =
   listings =>
     carts => {
-      // TODO
+      return carts.map((cart) => {
+        return {
+          customer: cart.customer,
+          total: cart.items.reduce(
+            (previous, itemName) => {
+              return previous + listings
+                .filter(listing => listing.name === itemName)
+                .reduce(
+                  (previous, current) => {
+                    return previous + current.price
+                  },
+                0)
+            },
+          0)
+        }
+      })
     }
 
 module.exports = {
