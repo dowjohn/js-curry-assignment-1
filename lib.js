@@ -32,8 +32,7 @@ const calculateTotals =
             (previous, itemName) => {
               return previous + listings
                 .filter((listing) => {
-                  let checkFunc = listedPrice(listing)
-                  return checkFunc(itemName)
+                  return listedPrice(listing)(itemName)
                 })
                 .reduce(
                   (previous, current) => {
